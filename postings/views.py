@@ -1,6 +1,14 @@
 from django.views import generic
 from postings.models import Posting
 from django.urls import reverse_lazy
+from django.contrib.auth.mixins import LoginRequiredMixin
+from users.forms import UsersUserCreationForm
+
+
+class SignUpView(generic.CreateView):
+    form_class = UsersUserCreationForm
+    template_name = "postings/signup.html"
+    success_url = reverse_lazy("postings:postings-list")
 
 
 class PostingListView(generic.ListView):
@@ -21,21 +29,21 @@ class PostingDetailView(generic.DetailView):
     #     return context
 
 
-class PostingCreateView(generic.CreateView):
+class PostingCreateView(LoginRequiredMixin, generic.CreateView):
     model = Posting
     template_name = "postings/posting_create.html"
     fields = "__all__"
     success_url = reverse_lazy("postings:postings-list")
 
 
-class PostingUpdateView(generic.UpdateView):
+class PostingUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = Posting
     template_name = "postings/posting_create.html"
     fields = "__all__"
     success_url = reverse_lazy("postings:postings-list")
 
 
-class PostingDeleteView(generic.DeleteView):
+class PostingDeleteView(LoginRequiredMixin, generic.DeleteView):
     model = Posting
     template_name = "postings/posting_create.html"
 

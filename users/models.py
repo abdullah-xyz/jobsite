@@ -38,10 +38,14 @@ class UserManager(BaseUserManager):
 
 
 class User(AbstractBaseUser, PermissionsMixin):
-    email = models.EmailField(_("email address"), unique=True)
-    name = models.CharField(_("full name"), max_length=200)
-    dob = models.DateField(_("date of birth"))
-    is_staff = models.BooleanField(_("staff status"), default=False, help_text="designates whether user can access admin page")
+    email = models.EmailField(_("Email"), unique=True)
+    name = models.CharField(_("Full Name"), max_length=200)
+    dob = models.DateField(_("Date Of Birth"))
+    is_staff = models.BooleanField(
+        _("staff status"),
+        default=False,
+        help_text="designates whether user can access admin page",
+    )
     is_active = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
