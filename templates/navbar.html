@@ -1,0 +1,34 @@
+{% load static %}
+<header class="bg-primary-bg py-3">
+  <div class="container mx-auto flex justify-between items-center">
+    <a
+      href="{% url 'postings:postings-list' %}"
+      class="text-6xl font-medium pb-2 text-primary-fg"
+    >
+      JobSite
+    </a>
+    <ul class="flex space-x-6 text-xl text-primary-fg">
+      {% if request.user.is_authenticated %}
+      <li>
+        <a href="{% url 'postings:postings-create' %}" class="hover:text-primary-hover">
+          Create Posting
+        </a>
+      </li>
+      <li>
+        <a href="{% url 'logout' %}" class="hover:text-primary-hover">
+          Sign Out
+        </a>
+      </li>
+      {% else %}
+      <li>
+        <a href="{% url 'sign-up' %}" class="hover:text-primary-hover">
+          Sign Up
+        </a>
+      </li>
+      <li>
+        <a href="{% url 'login' %}" class="hover:text-primary-hover"> Login </a>
+      </li>
+      {% endif %}
+    </ul>
+  </div>
+</header>

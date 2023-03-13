@@ -1,3 +1,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.input {
+    @apply block rounded-md mt-1 w-full shadow-sm border border-light-bg2 focus:border-primary-bg focus:ring focus:ring-primary-bg focus:ring-opacity-50;
+}
+
+.btn {
+    @apply block py-2 rounded-md mt-2 cursor-pointer
+}

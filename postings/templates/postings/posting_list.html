@@ -1,17 +1,57 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>List</title>
-</head>
-<body>
+{% extends 'base.html' %} {% block content %}
 
-    <ul>
-        {% for posting in postings %}
-            <li><a href="{% url 'postings:postings-detail' posting.id %}">{{ posting.title }}</a></li>
-        {% endfor %}
-    </ul>
-</body>
-</html>
+<div class="grid grid-cols-[1fr_1fr] gap-4">
+  {% for posting in postings %}
+
+  <a href="{% url 'postings:postings-detail' posting.id %}">
+    <div
+      class="border border-light-bg2 bg-light-bg1 hover:bg-light-bg2 text-light-fg hover:border-light-bg3 rounded p-6 flex"
+    >
+    {% if posting.logo %}
+    <img
+    src="{{ posting.logo.url }}"
+    alt="{{ posting.title }}"
+    class="w-48 mr-4"
+    />
+    {% endif %}
+      <div class="">
+        <h3 class="text-2xl mb-4 font-medium">{{ posting.title }}</h3>
+        <div class="text-xl font-bold mb-2">{{ posting.company }}</div>
+        <div class="text-xl mb-4">
+          <i class="fa-solid fa-envelope"></i> {{ posting.email }}
+        </div>
+        <ul>
+          <li
+            class="flex items-center justify-center bg-light-fg text-light-bg1 rounded-xl py-1 px-3 mr-2 text-xs"
+          >
+            todo tags
+          </li>
+        </ul>
+        <div class="text-lg mt-4">
+          <i class="fa-solid fa-location-dot"></i> {{ posting.location }}
+        </div>
+      </div>
+    </div>
+  </a>
+  {% endfor %}
+</div>
+
+<div class="pagination flex justify-between items-center mt-10">
+  <div class="flex space-x-2">
+    {% if page_obj.has_previous %}
+      <a href="?page=1" class="btn px-4 bg-light-bg2 text-light-fg hover:text-primary-hover">&laquo; first</a>
+      <a href="?page={{ page_obj.previous_page_number }}" class="btn px-4 bg-light-bg2 text-light-fg hover:text-primary-hover">previous</a>
+    {% endif %}
+  </div>
+
+  Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+
+  <div class="flex space-x-2">
+    {% if page_obj.has_next %}
+      <a href="?page={{ page_obj.next_page_number }}" class="btn px-4 bg-light-bg2 text-light-fg hover:text-primary-hover">next</a>
+      <a href="?page={{ page_obj.paginator.num_pages }}" class="btn px-4 bg-light-bg2 text-light-fg hover:text-primary-hover">last &raquo;</a>
+    {% endif %}
+  </div>
+</div>
+
+{% endblock content %}

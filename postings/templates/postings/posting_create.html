@@ -1,16 +1,25 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Create</title>
-</head>
-<body>
-    <form method="POST" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <input type="submit" value="Create">
-    </form>
-</body>
-</html>
+{% extends 'base.html' %} {% block content %}
+
+<div class="flex justify-center items-center">
+  <form method="post" enctype="multipart/form-data" class="w-1/4">
+    {% csrf_token %}
+    {% comment %} {{ form.non_field_errors }}
+    <label class="block">{{ form.title.label}}
+      <input type="text" name="title" id="title" class="block rounded-md mt-1 w-full shadow-sm border-light-bg2 focus:border-primary-bg focus:ring focus:ring-primary-bg focus:ring-opacity-50">
+    </label>
+    {{ form.title.errors }}
+    <input
+      type="submit"
+      value="Create"
+      class="block bg-primary-bg text-primary-fg w-full py-2 rounded-md mt-2 "
+    /> {% endcomment %}
+    {{ form }}
+    <input
+      type="submit"
+      value="Create"
+      class="btn bg-primary-bg text-primary-fg hover:text-primary-hover"
+    />
+  </form>
+</div>
+
+{% endblock content %}
