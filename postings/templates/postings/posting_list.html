@@ -1,5 +1,7 @@
 {% extends 'base.html' %} {% block content %}
 
+{% load custom_filters %}
+
 <div class="grid grid-cols-[1fr_1fr] gap-4">
   {% for posting in postings %}
 
@@ -20,12 +22,14 @@
         <div class="text-xl mb-4">
           <i class="fa-solid fa-envelope"></i> {{ posting.email }}
         </div>
-        <ul>
+        <ul class="flex overflow-hidden">
+          {% for tag in posting.tags|split:"," %}
           <li
             class="flex items-center justify-center bg-light-fg text-light-bg1 rounded-xl py-1 px-3 mr-2 text-xs"
           >
-            todo tags
+            {{ tag }}
           </li>
+          {% endfor %}
         </ul>
         <div class="text-lg mt-4">
           <i class="fa-solid fa-location-dot"></i> {{ posting.location }}

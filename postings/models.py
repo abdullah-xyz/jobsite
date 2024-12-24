@@ -24,7 +24,8 @@ class Posting(models.Model):
         upload_to="logo/", blank=True, null=True, help_text=_("logo of the company")
     )
     description = models.TextField(help_text=_("description of job"))
-    tags = models.ManyToManyField(Tag)
+    # tags = models.ManyToManyField(Tag)
+    tags = models.CharField(max_length=100)
     created_by = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):

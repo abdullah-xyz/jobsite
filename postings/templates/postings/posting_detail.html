@@ -1,5 +1,7 @@
 {% extends 'base.html' %} {% block content %}
 
+{% load custom_filters %}
+
 <div
   class="border border-light-bg2 bg-light-bg1 text-light-fg rounded p-6 flex flex-col items-center justify-center text-center"
 >
@@ -13,12 +15,14 @@
 
   <h3 class="text-2xl mb-2">{{ posting.title }}</h3>
   <div class="text-xl font-bold mb-4">{{ posting.company }}</div>
-  <ul>
+  <ul class="flex">
+    {% for tag in posting.tags|split:"," %}
     <li
       class="flex items-center justify-center bg-light-fg text-light-bg1 rounded-xl py-1 px-3 mr-2 text-xs"
     >
-      todo tags
+      {{ tag }}
     </li>
+    {% endfor %}
   </ul>
   <div class="text-lg my-4">
     <i class="fa-solid fa-location-dot"></i> {{ posting.location }}
