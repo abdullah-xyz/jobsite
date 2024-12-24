@@ -61,6 +61,6 @@ The `jobsite` is a web-based application designed to facilitate job postings and
 - **Database Configuration:** This repository uses sqlite by default, additionally databasse settings can be configured in `settings.py` as per your enviroment.
 
 ## Screenshots
-![list posting][./Screenshots/listing.png]
-![posting details][./Screenshots/details.png]
-![create posting][./Screenshots/creation.png]
+![list posting](./Screenshots/listing.png)
+![posting details](./Screenshots/details.png)
+![create posting](./Screenshots/creation.png)
